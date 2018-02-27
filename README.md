@@ -1,5 +1,4 @@
 # booklist-client
-
 Class 11: Production & Deployment 02/27/2018
 
 Author: Peter Kim and Zachary Schumpert
