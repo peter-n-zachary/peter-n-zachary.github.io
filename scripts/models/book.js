@@ -28,12 +28,12 @@ var __API_URL__ = 'https://zs-pk-booklist.herokuapp.com';
   };
 
   Book.loadAll = rows => {
-    Book.all = rows.map(e => new Book(e));
+    Book.all = rows.sort((a, b) => b.title-a.title).map(book => new Book(book));
 
   };
 
   Book.fetchAll = callback => {
-    $.get(`${__API_URL__}/books`)
+    $.get(`${__API_URL__}/api/v1/books`)
       .then(Book.loadAll)
       .then(callback)
       .catch(errorCallback);
@@ -54,7 +54,7 @@ var __API_URL__ = 'https://zs-pk-booklist.herokuapp.com';
       .then(console.log)
       .then(callback);
   };
-  
+
   module.Book = Book;
 })(app);
 
