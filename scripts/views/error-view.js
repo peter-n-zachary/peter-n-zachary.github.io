@@ -1,6 +1,6 @@
 'use strict'
 
-var bookApp = bookApp || {};
+var app = app || {};
 
 (function (module) {
   const errorView = {};
