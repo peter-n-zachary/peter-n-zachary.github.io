@@ -6,9 +6,31 @@
   <title>Page Title</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-  <script src="main.js"></script>
+  <script id="book-template" type="text/x-handlebars-template">
+    <li>{{author}}: {{title}}</li>
+  </script>
 </head>
 <body>
   <h1>Hello World!</h1>
+  <section>
+    <!-- list all available books by author and title -->
+    <ul class="book-list">
+
+    </ul>
+
+  </section>
+  
+  <section id="stats">
+    <dt>Total Books: </dt> <dd class="total-books"></dd>
+
+  </section>
 </body>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+
+  <script src="./scripts/models/books.js" type="text/javascript"></script>
+  <script src="./scripts/views/book-view.js" type="text/javascript"></script>
+  <script src="./scripts/views/error-view.js" type="text/javascript"></script>
+  <script>app.Book.fetchAll(app.bookView.initIndexPage);</script>
+
 </html>
