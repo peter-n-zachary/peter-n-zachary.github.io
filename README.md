@@ -15,5 +15,19 @@ To build this app, the user must install node.js, express, postgres, cors, herok
 The application is designed using: HTML, CSS, JavaScript, jQuery, AJAX and JSON.    Also, install node.js, and the express, postres and cors modules.  Also, install heroku and setup a server.  Handlebars will also be used to create the application. 
 
 ## Change Log
+02/27/2018 9:30am book.js created
+02/27/2018 9:45am book-view.js & error-view.js created
+02/27/2018 9:45am amcreated README.md
+02/27/2018 10:00am basic file structures completed
+02/27/2018 10:30am api_url entered into book.js
+02/27/2018 11:30am finished error-view.js file
+02/27/2018 12:00pm testing app.Book.fetchAll functionality
+02/27/2018 12:30pm fixing handlebars
+02/28/2018 9:30am Lab 11 fixed except css
 
 ## Credits and Collaborations
+Nicholas TA
+Jeff TA
+Allie's demos
+Peter Kim
+Zachary Schumpert
