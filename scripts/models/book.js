@@ -18,18 +18,20 @@ const __API_URL__ = 'http://localhost:3000';
   Book.all = [];
 
   Book.prototype.toHtml = function () {
-    let template = Handlebars.compile($('#book-list.template').text());
+    let template = Handlebars.compile($('#book-list-template').text());
 
     return template(this);
   };
 
   Book.loadAll = rows => {
-    Book.all = rows.sort((a, b) => b.title - a.title).map(book => new Book(book));
+    console.log('loadall triggered')
+    // sort((a, b) => b.title - a.title)
+    Book.all = rows.map(book => new Book(book));
 
   };
 
   Book.fetchAll = callback => {
-    $.get(`${__API_URL__}/api/v1/ books`)
+    $.get(`${__API_URL__}/api/v1/books`)
       .then(Book.loadAll)
       .then(callback)
       .catch(errorCallback);
@@ -50,7 +52,7 @@ const __API_URL__ = 'http://localhost:3000';
       .then(console.log)
       .then(callback);
   };
-  
+
   module.Book = Book;
 })(app);
 
