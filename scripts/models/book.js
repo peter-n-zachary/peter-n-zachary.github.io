@@ -1,7 +1,7 @@
 'use strict';
 var app = app || {};
-// var __API_URL__ = 'http://localhost:3000';
-var __API_URL__ = 'https://zs-pk-booklist.herokuapp.com';
+const __API_URL__ = 'http://localhost:3000';
+// const __API_URL__ = 'https://zs-pk-booklist.herokuapp.com';
 
 
 (function (module) {
@@ -9,31 +9,27 @@ var __API_URL__ = 'https://zs-pk-booklist.herokuapp.com';
     console.error(err);
     module.errorView.initErrorPage(err);
   }
-  function Book(rawData) {
+  function Book(rawBookObj) {
     // author, title, isbn, image_url, description
-    this.author = rawData.author,
-    this.title = rawData.title,
-    this.isbn = rawData.isbn,
-    this.image_url = rawData.image_url,
-    this.description = rawData.description
+    Object.keys(rawBookObj).forEach(key => this[key] = rawBookObj[key]);
+
   }
 
   Book.all = [];
 
   Book.prototype.toHtml = function () {
-    let template = Handlebars.compile($('#book-template').text());
-    this.description = marked(this.description);
+    let template = Handlebars.compile($('#book-list.template').text());
 
     return template(this);
   };
 
   Book.loadAll = rows => {
-    Book.all = rows.map(e => new Book(e));
+    Book.all = rows.sort((a, b) => b.title - a.title).map(book => new Book(book));
 
   };
 
   Book.fetchAll = callback => {
-    $.get(`${__API_URL__}/books`)
+    $.get(`${__API_URL__}/api/v1/ books`)
       .then(Book.loadAll)
       .then(callback)
       .catch(errorCallback);

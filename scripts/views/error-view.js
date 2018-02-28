@@ -15,7 +15,7 @@ var app = app || {};
   module.errorView = errorView;
 })(app)
 
-let errorCallback = function(errorObj) {
-  conosole.log(errorObj)
-  errorView.initErrorPage(errorObj); 
-};
+// let errorCallback = function(errorObj) {
+//   conosole.log(errorObj)
+//   errorView.initErrorPage(errorObj); 
+// };
