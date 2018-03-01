@@ -7,11 +7,21 @@
 
   <script id="book-list-template" type="text/x-handlebars-template">
     <ul class="book-item">
+      <li><a href="/viewDetail/{{book_id}}"><img src="{{image_url}}"></a></li>
+      <li>Title: {{title}}</li>
+      <li>Author: {{author}}</li>
+      
+    </ul>
+  </script>
+
+  <script id="single-book-list-template" type="text/x-handlebars-template">
+    <ul class="single-book-item">
       <li><img src="{{image_url}}"></li>
       <li>Title: {{title}}</li>
       <li>Author: {{author}}</li>
+      <li>isbn: {{isbn}}</li>
+      <li>Description: {{description}}</li>
     </ul>
-
   </script>
 
 </head>
@@ -27,6 +37,10 @@
     <div id="book-list">
     </div>
 
+  </section>
+
+  <section class="single-book-view container">
+    <div id="single-book"></div>
   </section>
   
   <section id="stats">
@@ -44,12 +58,13 @@
       </ul>
     </div>
   </footer>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
-  
-    <script src="./scripts/models/book.js" type="text/javascript"></script>
-    <script src="./scripts/views/book-view.js" type="text/javascript"></script>
-    <script src="./scripts/views/error-view.js" type="text/javascript"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+  <script src="scripts/models/book.js" type="text/javascript"></script>
+  <script src="scripts/views/error-view.js" type="text/javascript"></script>
+  <script src="scripts/views/book-view.js" type="text/javascript"></script>
+  <script src="scripts/views/routes.js" type="text/javascript"></script>
 </body>
 
 </html>
