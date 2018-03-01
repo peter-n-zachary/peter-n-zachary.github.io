@@ -30,7 +30,7 @@ const __API_URL__ = 'http://localhost:3000';
   // };
 
   Book.loadAll = rows => {
-    // 
+    //
     Book.all = rows.sort((a, b) => a.book_id - b.book_id).map(book => new Book(book));
 
   };
@@ -44,19 +44,19 @@ const __API_URL__ = 'http://localhost:3000';
   };
 
   Book.fetchOne = (ctx, callback) => {
-    console.log(ctx);
-    $.get(`${__API_URL__}/api/v1/books/${ctx.params.id}`)
-      .then(Book.loadAll)
+    console.log("triggered fetchhone");
+    $.get(`${__API_URL__}/api/v1/books/${ctx.params.book_id}`)
+      // .then(Book.loadAll)
       // .then(array => new Book(array[0]))
-      // .then(results => ctx.book = results[0])
+      .then(results => ctx.book = results[0])
       .then(callback)
       .catch(errorCallback);
   };
 
   Book.createNewBook = book => {
     $.post(`${__API_URL__}/api/v1/books`, book)
-    .then(() => page('/'))
-    .catch(errorCallback);
+      .then(() => page('/'))
+      .catch(errorCallback);
   }
 
   Book.prototype.insertRecord = function(callback) {

@@ -8,19 +8,22 @@ var app = app || {};
     console.log('initindexpage triggered')
     // let template = Handlebars.compile($('#book-template').text());
     $('.container').hide();
-    $('#book-item').empty();
+    $('.book-item').empty();
     $('.book-view').show();
+    $('.stats').show();
     app.Book.all.map(book => $('#book-list').append(book.toHtml()));
     $('#total-list').hide();
     $('#totalBooks').text('Number of Total Books: ' + app.Book.all.length);
   }
 
-  bookView.singleBookDisplay = (book) => {
-    // console.log(book);
+  bookView.singleBookDisplay = (ctx) => {
+    console.log(ctx);
     $('.container').hide();
-    $('#book-item').empty();
-    $('.book-view').show();
-    app.Book.all.map(book => $('#book-list').append(book.toHTML()));
+    $('.singlebook-item').empty();
+    $('.single-view').show();
+    let template = Handlebars.compile($('#singlebook-template').text());
+    $('#singlebook-list').append(template(ctx));
+
   }
 
   bookView.newBookEntryForm = function () {
@@ -44,7 +47,7 @@ var app = app || {};
 })(app);
 
 //Document.ready()
-$(function() {
-  app.Book.fetchAll(app.bookView.initIndexPage);
-})
+// $(function() {
+//   app.Book.fetchAll(app.bookView.initIndexPage);
+// })
 
