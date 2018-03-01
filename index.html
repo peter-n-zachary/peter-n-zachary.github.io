@@ -5,30 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Books</title>
 
+  <script type="text/x-handlebars-template" id="error-template">
+    <p>{{status}}: {{statusText}}</p>
+  </script>
+
   <script id="book-list-template" type="text/x-handlebars-template">
     <ul class="book-item">
       <li><a href="/viewDetail/{{book_id}}"><img src="{{image_url}}"></a></li>
       <li>Title: {{title}}</li>
       <li>Author: {{author}}</li>
-      
-    </ul>
-  </script>
+      <li id="total-list">isbn: {{isbn}}</li>
+      <li id="total-list">Description: {{description}}</li>
 
-  <script id="single-book-list-template" type="text/x-handlebars-template">
-    <ul class="single-book-item">
-      <li><img src="{{image_url}}"></li>
-      <li>Title: {{title}}</li>
-      <li>Author: {{author}}</li>
-      <li>isbn: {{isbn}}</li>
-      <li>Description: {{description}}</li>
+      
     </ul>
   </script>
 
 </head>
 <body>
-  <h1>Hello World!</h1>
+  <h1>Book List</h1>
+  <nav class="menu">
+    <ul>
+      <li>
+        <a href="/">Books</a>
+      </li>
+      <li>
+        <a href="/books/new">Add New Book</a>
+      </li>
+    </ul>
+  </nav>
+
   <section class="error-view container">
-    <p>Error occurred.</p>
+    <p>Error container</p>
     <div id="error-message"></div>
   </section>
 
@@ -39,14 +47,22 @@
 
   </section>
 
-  <section class="single-book-view container">
-    <div id="single-book"></div>
-  </section>
-  
-  <section id="stats">
+  <section id="stats container">
     <p id="totalBooks"></p>
 
   </section>
+
+  <section class="new-book container">
+      <h3>Add a New Book</h3>
+      <form id="new-book-form">
+        <input type="text" name="title" placeholder="Book Title">
+        <input type="text" name="author" placeholder="Author">
+        <input type="text" name="image_url" placeholder="Book Cover Image Url">
+        <input type="text" name="isbn" placeholder="ISBN Number">
+        <textarea name="description" placeholder="Description of the book" cols="40" rows="50"></textarea>
+        <button type="submit">Add</button>
+      </form>
+    </section>
   
   <footer>
     <div class="social-links">
