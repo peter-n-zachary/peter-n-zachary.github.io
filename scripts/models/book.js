@@ -23,6 +23,12 @@ const __API_URL__ = 'http://localhost:3000';
     return template(this);
   };
 
+  // Book.prototype.singleToHtml = function () {
+  //   let template = Handlebars.compile($('#single-book-list-template').text());
+
+  //   return template(this);
+  // };
+
   Book.loadAll = rows => {
     console.log('loadall triggered')
     // sort((a, b) => b.title - a.title)
@@ -38,12 +44,13 @@ const __API_URL__ = 'http://localhost:3000';
 
   };
 
-  Book.numOfBooks = () => Book.all.length.reduce((a, b) => a + b);
-
-  Book.stats = () => {
-    return {
-      numBooks: Book.numOfBooks()
-    }
+  Book.fetchOne = (ctx, callback) => {
+    console.log(ctx);
+    $.get(`${__API_URL__}/api/v1/books/${ctx.params.id}`)
+      .then(array => new Book(array[0]))
+      // .then(results => ctx.book = results[0])
+      .then(callback)
+      .catch(errorCallback);
   };
 
   Book.prototype.insertRecord = function(callback) {
