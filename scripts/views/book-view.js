@@ -8,17 +8,36 @@ var app = app || {};
     console.log('initindexpage triggered')
     // let template = Handlebars.compile($('#book-template').text());
     $('.container').hide();
+    $('#book-item').empty();
     $('.book-view').show();
     app.Book.all.map(book => $('#book-list').append(book.toHtml()));
+    $('#total-list').hide();
     $('#totalBooks').text('Number of Total Books: ' + app.Book.all.length);
   }
 
   bookView.singleBookDisplay = (book) => {
     // console.log(book);
     $('.container').hide();
-    $('.single-book-view').show();
-    let template = Handlebars.compile($('#single-book-list-template').text());
-    $('#single-book-template').append(template(book));
+    $('#book-item').empty();
+    $('.book-view').show();
+    app.Book.all.map(book => $('#book-list').append(book.toHTML()));
+  }
+
+  bookView.newBookEntryForm = function () {
+    $('.container').hide();
+    $('.new-book').show();
+    $('#new-book-form').on('submit', function (event) {
+      event.preventDefault();
+
+      let book = {
+        title: event.target.title.value,
+        author: event.target.author.value,
+        image_url: event.target.image_url.value,
+        isbn: event.target.isbn.value,
+        description: event.target.description.value
+      }
+      app.Book.createNewBook(book);
+    })
   }
 
   module.bookView = bookView;
@@ -28,4 +47,4 @@ var app = app || {};
 $(function() {
   app.Book.fetchAll(app.bookView.initIndexPage);
 })
-// $('.book-item').click(function() {app.Book.fetchOne(app.bookView.singleBookDisplay)});
+
