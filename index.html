@@ -13,7 +13,7 @@
 
   <script id="book-list-template" type="text/x-handlebars-template">
     <ul class="book-item">
-      <li><a href="/viewDetail/{{book_id}}"><img src="{{image_url}}"></a></li>
+      <li><a href="/viewDetail/{{book_id}}" ><img src="{{image_url}}"></a></li>
       <li>Title: {{title}}</li>
       <li>Author: {{author}}</li>
       <li id="total-list">isbn: {{isbn}}</li>
@@ -26,16 +26,11 @@
       <li>Title: {{title}}</li>
       <li>Author: {{author}}</li>
       <li id="total-list">isbn: {{isbn}}</li>
-      <li id="total-list">Description: {{description}}</li>
-      <!-- buttons for update and delete -->
+      <li id="total-list">Description: {{description}}</li>  
       <a href="/update/{{book_id}}"><button id="updateBtn">Update</button></a>
-      <a href="/delete/{{book_id}}"><button id="deleteBtn" >Delete</button></a>
-      <!-- buttons for update and delete -->
+      <a href="/delete/{{book_id}}"><button id="deleteBtn">Delete</button></a>
     </ul>
   </script>
-  <link rel="stylesheet" href="styles/layout.css">
-
-
 </head>
 <body>
   <h1>Book List</h1>
@@ -72,28 +67,16 @@
   </section>
 
   <section class="new-book container">
-    <h3>Add a New Book</h3>
-    <form id="new-book-form">
-    <input type="text" name="title" placeholder="Book Title">
-    <input type="text" name="author" placeholder="Author">
-    <input type="text" name="image_url" placeholder="Book Cover Image Url">
-    <input type="text" name="isbn" placeholder="ISBN Number">
-    <textarea name="description" placeholder="Description of the book" cols="40" rows="30"></textarea>
-    <button type="submit">Add</button>
-    </form>
-  </section>
-
-  <section class="update container">
-    <h3>Update Book Information</h3>
-    <form id="update-form">
-      <input type="text" name="title" placeholder="Book Title">
-      <input type="text" name="author" placeholder="Author">
-      <input type="text" name="image_url" placeholder="Book Cover Image Url">
-      <input type="text" name="isbn" placeholder="ISBN Number">
-      <textarea name="description" placeholder="Description of the book" cols="40" rows="30"></textarea>
-      <button type="submit">Add</button>
-    </form>
-  </section>
+      <h3>Add a New Book</h3>
+      <form id="new-book-form">
+        <input type="text" name="title" placeholder="Book Title">
+        <input type="text" name="author" placeholder="Author">
+        <input type="text" name="image_url" placeholder="Book Cover Image Url">
+        <input type="text" name="isbn" placeholder="ISBN Number">
+        <textarea name="description" placeholder="Description of the book" cols="40" rows="50"></textarea>
+        <button type="submit">Add</button>
+      </form>
+    </section>
   
   <footer>
     <!-- <div class="social-links">

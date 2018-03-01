@@ -7,6 +7,6 @@
 page('/', ctx => app.Book.fetchAll(app.bookView.initIndexPage));
 page('/viewDetail/:book_id', ctx => app.Book.fetchOne(ctx, app.bookView.singleBookDisplay));
 page('/books/new', app.bookView.newBookEntryForm);
-page('/delete/:book_id', ctx => app.Book.deleteBook(ctx));
+page('/delete/:id', ctx => app.Book.deleteBook(ctx));
 
 page();
