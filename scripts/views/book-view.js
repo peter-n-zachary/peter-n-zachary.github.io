@@ -82,6 +82,11 @@ var app = app || {};
       app.Book.cancel();
     });
 
+    $('#update-btn').on('click', function (event) {
+      event.preventDefault();
+      app.Book.cancel();
+    });
+
   };
 
 

@@ -80,6 +80,15 @@ const __API_URL__ = 'http://localhost:3000';
       .then(() => page('/'));
   };
 
+  Book.updateBook = () => {
+    // $.ajax({
+    //   url: `${__API_URL__}/api/v1/book/update`,
+    //   method: 'UPDATE',
+    //   data: { book_id: id }
+    // })
+    page('/');
+  };
+
   Book.cancel = () => {
     console.log('hitting here?');
     page('/');
