@@ -5,8 +5,6 @@ var app = app || {};
 (function (module) {
   let bookView = {};
   bookView.initIndexPage = () => {
-    console.log('initindexpage triggered')
-    // let template = Handlebars.compile($('#book-template').text());
     $('.container').hide();
     $('.book-item').empty();
     $('.book-view').show();
@@ -17,7 +15,6 @@ var app = app || {};
   }
 
   bookView.singleBookDisplay = (ctx) => {
-    console.log(ctx);
     $('.container').hide();
     $('.singlebook-item').empty();
     $('.single-view').show();
@@ -26,7 +23,7 @@ var app = app || {};
 
   }
 
-  bookView.newBookEntryForm = function () {
+  bookView.newBook = function () {
     $('.container').hide();
     $('.new-book').show();
     $('#new-book-form').on('submit', function (event) {
@@ -39,7 +36,7 @@ var app = app || {};
         isbn: event.target.isbn.value,
         description: event.target.description.value
       }
-      app.Book.insertRecord(book);
+      app.Book.create(book);
     })
   }
 
@@ -56,25 +53,43 @@ var app = app || {};
     module.Book.updateBook(book);
   };
 
-  // bookView.handleDelete = event => {
-  //   event.preventDefault();
-  //   console.log(event);
-  //   let id = $('#delete-yes').attr('book_id');
-  //   module.Book.deleteBook(id);
-  // };
-
   bookView.initDeleteBook = (ctx) => {
-    console.log('init delete book');
     $('.container').hide();
     let template = Handlebars.compile($('#delete-book-template').text());
     $('.delete').show();
     $('.delete-book-item').empty();
     $('.delete').append(template(ctx));
-    $('#delete').attr('book_id', ctx.book_id);
     $('#delete-btn').on('click', function(event){
       event.preventDefault();
-      let id = $('#delete').attr('book_id');
-      app.Book.deleteBook(id);
+      app.Book.deleteBook(ctx.book_id);
+
+    });
+    $('#cancel-btn').on('click', function(event){
+      event.preventDefault();
+      app.Book.cancel();
+    });
+
+  };
+
+  bookView.initUpdateBook = (ctx) => {
+    $('.container').hide();
+    let template = Handlebars.compile($('#update-book-template').text());
+    $('.update').show();
+    $('.update-book-item').empty();
+    $('.update').append(template(ctx));
+
+    // $('.update-book-item').attr('book_id', ctx.book_id);
+    $('#update-btn').on('click', function(event){
+      event.preventDefault();
+      let book = {
+        book_id: ctx.book_id,
+        title: $('#update-title').val() || ctx.title,
+        author: $('#update-author').val() || ctx.author,
+        isbn: $('#update-isbn').val() || ctx.isbn,
+        image_url: $('#update-image_url').val() || ctx.image_url,
+        description: $('#update-description').val() || ctx.description
+      };
+      app.Book.updateBook(book);
 
     });
     $('#cancel-btn').on('click', function(event){
@@ -88,15 +103,3 @@ var app = app || {};
   module.bookView = bookView;
 
 })(app);
-
-//Document.ready()
-// $(function() {
-//   app.Book.fetchAll(app.bookView.initIndexPage);
-// })
-//when page is reloaded / refreshed, redirect to index
-// $(function() {
-//   if (performance.navigation.type === 1) {
-//     page('/');
-//   }
-// })
-

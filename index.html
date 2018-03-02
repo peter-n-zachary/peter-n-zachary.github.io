@@ -47,6 +47,31 @@
     </ul>
   </script>
 
+  <script id="update-book-template" type="text/x-handlebars-template">
+    <form class="update-book-item">
+      <section class="update-field">
+        <img src="{{image_url}}">
+        <label>
+          <input type="text" id="update-title" placeholder="{{title}}" required>
+        </label>
+        <label>
+          <input type="text" id="update-author" placeholder="{{author}}" required>
+        </label>
+        <label>
+          <input type="text" id="update-image_url" placeholder="{{image_url}}" required>
+        </label>
+        <label>
+          <input type="text" id="update-isbn" placeholder="{{isbn}}" required>
+        </label>
+        <textarea id="update-description" rows="30" cols="30" placeholder="{{description}}" required></textarea>
+
+        <p>Are you sure you want to update this book?</p>
+        <button id="update-btn">Update</button>
+        <button id="cancel-btn">Cancel</button>          
+      </section>
+    </form>
+  </script>
+
   <link href="styles/normalize.css" rel="stylesheet">
   <link href="styles/base.css" rel="stylesheet">
   <link href="styles/layout.css" rel="stylesheet">
@@ -87,37 +112,31 @@
     </section>
 
     <section class="delete container">
-        <div id="book-to-delete"></div>
-      </section>
+      <div id="book-to-delete"></div>
+    </section>
+
+    <section class="new-book container">
+      <h3>Add a New Book</h3>
+      <form id="new-book-form">
+        <input type="text" name="title" placeholder="Book Title" required>
+        <input type="text" name="author" placeholder="Author" required>
+        <input type="text" name="image_url" placeholder="Book Cover Image Url" required>
+        <input type="text" name="isbn" placeholder="ISBN Number" required>
+        <textarea name="description" placeholder="Description of the book" cols="30" rows="30"></textarea>
+        <button type="submit">Add</button>
+      </form>
+    </section>
+
+    <section class="update container">
+      <div id="book-to-update"></div>
+    </section>
 
     <section class="stats container">
       <p id="totalBooks"></p>
 
     </section>
 
-    <section class="new-book container">
-      <h3>Add a New Book</h3>
-      <form id="new-book-form">
-      <input type="text" name="title" placeholder="Book Title">
-      <input type="text" name="author" placeholder="Author">
-      <input type="text" name="image_url" placeholder="Book Cover Image Url">
-      <input type="text" name="isbn" placeholder="ISBN Number">
-      <textarea name="description" placeholder="Description of the book" cols="40" rows="30"></textarea>
-      <button type="submit">Add</button>
-      </form>
-    </section>
 
-    <section class="update container">
-      <h3>Update Book Information</h3>
-      <form id="update-form">
-        <input type="text" name="title" placeholder="Book Title">
-        <input type="text" name="author" placeholder="Author">
-        <input type="text" name="image_url" placeholder="Book Cover Image Url">
-        <input type="text" name="isbn" placeholder="ISBN Number">
-        <textarea name="description" placeholder="Description of the book" cols="40" rows="30"></textarea>
-        <button type="submit">Add</button>
-      </form>
-    </section>
     
     <footer>
       <!-- <div class="social-links">

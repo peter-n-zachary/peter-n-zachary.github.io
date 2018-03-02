@@ -6,7 +6,6 @@ const __API_URL__ = 'http://localhost:3000';
 
 (function (module) {
   function errorCallback(err) {
-    console.error(err);
     module.errorView.initErrorPage(err);
   }
   function Book(rawBookObj) {
@@ -44,30 +43,11 @@ const __API_URL__ = 'http://localhost:3000';
   };
 
   Book.fetchOne = (ctx, callback) => {
-    console.log('triggered fetchone');
     $.get(`${__API_URL__}/api/v1/books/${ctx.params.book_id}`)
       // .then(Book.loadAll)
       // .then(array => new Book(array[0]))
       .then(results => ctx.book = results[0])
       .then(callback)
-      .catch(errorCallback);
-  };
-
-
-  Book.prototype.insertRecord = book => {
-    $.post(`${__API_URL__}/api/v1/books`, book)
-      .then(() => page('/'))
-      .catch(errorCallback)
-  };
-
-
-  Book.prototype.updateBook = (book) => {
-    $.ajax({
-      url: `${__API_URL__}/api/v1/book-${book.book_id}/update`,
-      method: 'PUT',
-      data: book
-    })
-      .then(() => page('/'))
       .catch(errorCallback);
   };
 
@@ -81,8 +61,23 @@ const __API_URL__ = 'http://localhost:3000';
   };
 
   Book.cancel = () => {
-    console.log('hitting here?');
     page('/');
+  };
+
+  Book.create = book => {
+    $.post(`${__API_URL__}/api/v1/books`, book)
+      .then(() => page('/'))
+      .catch(errorCallback);
+  }
+
+  Book.updateBook = (book) => {
+    $.ajax({
+      url: `${__API_URL__}/api/v1/update/${book.book_id}`,
+      method: 'PUT',
+      data: book
+    })
+      .then(() => page('/'))
+      .catch(errorCallback);
   };
 
   module.Book = Book;
