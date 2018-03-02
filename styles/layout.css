@@ -4,3 +4,22 @@ input {
 textarea {
   display: block;
 }
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+.hamburger {
+  border: 1px solid #464646;
+  font-size: 30px;
+  float: right;
+  background-color: #464646;
+  -webkit-text-fill-color: white;
+  margin-right: 1%;
+}
+
+.hamburger:hover, .hamburger:focus {
+  background-color: #fafafa;
+  -webkit-text-fill-color: black;
+}

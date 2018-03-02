@@ -43,7 +43,50 @@ var app = app || {};
     })
   }
 
+  bookView.handleUpdateForm = event => {
+    event.preventDefault();
+    let book = new app.Book({
+      book_id: $('#new-book-form').attr('book_id'),
+      title: $('#book-title').val(),
+      author: $('#book-author').val(),
+      isbn: $('#book-isbn').val(),
+      image_url: $('#book-url').val(),
+      description: $('#book-description').val()
+    });
+    module.Book.updateBook(book);
+  };
+
+  // bookView.handleDelete = event => {
+  //   event.preventDefault();
+  //   console.log(event);
+  //   let id = $('#delete-yes').attr('book_id');
+  //   module.Book.deleteBook(id);
+  // };
+
+  bookView.initDeleteBook = (ctx) => {
+    console.log('init delete book');
+    $('.container').hide();
+    let template = Handlebars.compile($('#delete-book-template').text());
+    $('.delete').show();
+    $('.delete-book-item').empty();
+    $('.delete').append(template(ctx));
+    $('#delete').attr('book_id', ctx.book_id);
+    $('#delete-btn').on('click', function(event){
+      event.preventDefault();
+      let id = $('#delete').attr('book_id');
+      app.Book.deleteBook(id);
+
+    });
+    $('#cancel-btn').on('click', function(event){
+      event.preventDefault();
+      app.Book.cancel();
+    });
+
+  };
+
+
   module.bookView = bookView;
+
 })(app);
 
 //Document.ready()

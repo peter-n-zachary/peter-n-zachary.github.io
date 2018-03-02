@@ -44,7 +44,7 @@ const __API_URL__ = 'http://localhost:3000';
   };
 
   Book.fetchOne = (ctx, callback) => {
-    console.log('triggered fetchhone');
+    console.log('triggered fetchone');
     $.get(`${__API_URL__}/api/v1/books/${ctx.params.book_id}`)
       // .then(Book.loadAll)
       // .then(array => new Book(array[0]))
@@ -53,32 +53,37 @@ const __API_URL__ = 'http://localhost:3000';
       .catch(errorCallback);
   };
 
+
   Book.prototype.insertRecord = book => {
     $.post(`${__API_URL__}/api/v1/books`, book)
       .then(() => page('/'))
       .catch(errorCallback)
   };
 
-  // Book.deleteBook = (ctx) => {
-  //   $.delete(`${__API_URL__}/api/v1/books/${ctx.params.book_id}`)
-  //     .then(() => page('/'))
-  //     .catch(errorCallback);
-  // }
 
-  Book.prototype.deleteRecord = function(callback) {
+  Book.prototype.updateBook = (book) => {
     $.ajax({
-      url: `/articles/${this.article_id}`,
-      method: 'DELETE'
+      url: `${__API_URL__}/api/v1/book-${book.book_id}/update`,
+      method: 'PUT',
+      data: book
     })
-      .then(data => {
-        console.log(data);
-        if (callback) callback();
-      });
+      .then(() => page('/'))
+      .catch(errorCallback);
   };
-  //send delete request to server.js with book_id
-  //server (app.delete) will delete a specific book with id and then send back a new all book data
-  //redirect to index
 
+  Book.deleteBook = (id) => {
+    $.ajax({
+      url: `${__API_URL__}/api/v1/book/delete`,
+      method: 'DELETE',
+      data: {book_id : id}
+    })
+      .then(() => page('/'));
+  };
+
+  Book.cancel = () => {
+    console.log('hitting here?');
+    page('/');
+  };
 
   module.Book = Book;
 })(app);
