@@ -78,7 +78,6 @@ var app = app || {};
     $('.update-book-item').empty();
     $('.update').append(template(ctx));
 
-    // $('.update-book-item').attr('book_id', ctx.book_id);
     $('#update-btn').on('click', function(event){
       event.preventDefault();
       let book = {
