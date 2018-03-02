@@ -53,17 +53,28 @@ const __API_URL__ = 'http://localhost:3000';
       .catch(errorCallback);
   };
 
-  Book.createNewBook = book => {
+  Book.prototype.insertRecord = book => {
     $.post(`${__API_URL__}/api/v1/books`, book)
       .then(() => page('/'))
-      .catch(errorCallback);
-  }
+      .catch(errorCallback)
+  };
 
-  Book.deleteBook = (ctx) => {
-    $.delete(`${__API_URL__}/api/v1/books/${ctx.params.book_id}`)
-      .then(() => page('/'))
-      .catch(errorCallback);
-  }
+  // Book.deleteBook = (ctx) => {
+  //   $.delete(`${__API_URL__}/api/v1/books/${ctx.params.book_id}`)
+  //     .then(() => page('/'))
+  //     .catch(errorCallback);
+  // }
+
+  Book.prototype.deleteRecord = function(callback) {
+    $.ajax({
+      url: `/articles/${this.article_id}`,
+      method: 'DELETE'
+    })
+      .then(data => {
+        console.log(data);
+        if (callback) callback();
+      });
+  };
   //send delete request to server.js with book_id
   //server (app.delete) will delete a specific book with id and then send back a new all book data
   //redirect to index
