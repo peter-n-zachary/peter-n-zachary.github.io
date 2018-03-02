@@ -53,11 +53,13 @@ const __API_URL__ = 'http://localhost:3000';
       .catch(errorCallback);
   };
 
-  Book.prototype.createNewBook = book => {
+
+  Book.prototype.insertRecord = book => {
     $.post(`${__API_URL__}/api/v1/books`, book)
       .then(() => page('/'))
-      .catch(errorCallback);
-  }
+      .catch(errorCallback)
+  };
+
 
   Book.prototype.updateBook = (book) => {
     $.ajax({

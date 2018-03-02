@@ -39,7 +39,7 @@ var app = app || {};
         isbn: event.target.isbn.value,
         description: event.target.description.value
       }
-      app.Book.createNewBook(book);
+      app.Book.insertRecord(book);
     })
   }
 
@@ -92,5 +92,11 @@ var app = app || {};
 //Document.ready()
 // $(function() {
 //   app.Book.fetchAll(app.bookView.initIndexPage);
+// })
+//when page is reloaded / refreshed, redirect to index
+// $(function() {
+//   if (performance.navigation.type === 1) {
+//     page('/');
+//   }
 // })
 
