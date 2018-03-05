@@ -1,7 +1,7 @@
 'use strict';
 var app = app || {};
-const __API_URL__ = 'http://localhost:3000';
-// const __API_URL__ = 'https://zs-pk-booklist.herokuapp.com';
+// const __API_URL__ = 'http://localhost:3000';
+const __API_URL__ = 'https://zs-pk-booklist.herokuapp.com';
 
 
 (function (module) {
@@ -21,12 +21,6 @@ const __API_URL__ = 'http://localhost:3000';
 
     return template(this);
   };
-
-  // Book.prototype.singleToHtml = function () {
-  //   let template = Handlebars.compile($('#single-book-list-template').text());
-
-  //   return template(this);
-  // };
 
   Book.loadAll = rows => {
     //
