@@ -1,5 +1,6 @@
 input {
-  display: block;
+  /* display: block; */
+  width: 400px;
 }
 textarea {
   display: block;
@@ -22,4 +23,28 @@ ul {
 .hamburger:hover, .hamburger:focus {
   background-color: #fafafa;
   -webkit-text-fill-color: black;
+}
+
+input, .close-icon, .update-field{
+  position: relative;
+}
+
+.close-icon {
+  display: inline-block;
+  background: transparent;
+  border: transparent;
+}
+.close-icon::after {
+  content: 'X';
+  color: black;
+  display: block;
+  right: 34px;
+  background: red;
+  position: absolute;
+  /* top: 0px; */
+  bottom: 0;
+}
+
+.update-title:not(:valid) ~ .close-icon {
+  display: none;
 }
